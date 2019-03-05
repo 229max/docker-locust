@@ -8,6 +8,7 @@ services:
     volumes:
       - ~/.aws:/root/.aws
       - ./:/opt/script
+      - ./src:/opt/src
     environment:
       - ROLE=master
       - TARGET_HOST=$TARGET_HOST
