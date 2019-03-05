@@ -11,7 +11,7 @@ trap 'getAbort; exit' SIGINT SIGTERM
 
 function print_help() {
     echo "Usage:
-./local.sh deploy|test --target=<target_url> --locust-file=<file[,file2...]> --slaves=<slaves_amount> --mode=<manual|auto> [--users=<simultaneous_users> --hatch-rate=<added_users_per_second> --duration=<seconds>]
+./local.sh deploy|test --target=<target_url> --locust-file=<file[,file2...]> --slaves=<slaves_amount> --mode=<manual|auto> [--users=<simultaneous_users> --hatch-rate=<added_users_per_second> --duration=<seconds>  --image=<image_name> --compose=<true>]
 
 E.g.:
 ./local.sh deploy --target=https://host-to-test.com --locust-file=https://my.storage/file.py,https://my.storage/payload.json --slaves=4 --mode=manual
@@ -47,6 +47,12 @@ function parse_args() {
       ;;
       --duration=*)
       DURATION="${i#*=}"
+      ;;
+      --image=*)
+      IMAGE="${i#*=}"
+      ;;
+      --compose=*)
+      DOCKER_COMPOSE="${i#*=}"
       ;;
       --help)
       print_help
