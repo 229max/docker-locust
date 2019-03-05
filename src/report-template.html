@@ -138,13 +138,19 @@
     <h2>Distribution</h2>
     <table>
       <tr>
-        <th>{{distribution_header}}</th>
+        {% set headers = distribution_header.split(',') %}
+        {% for header in headers %}
+          <th>{{header}}</th>
+        {% endfor %}
       </tr>
       {% for row in distribution_content %}
       <tr>
+        {% set tds=row.split(',') %}
+        {% for td in tds %}
         <td>
-          <p>{{row}}</p>
+          <p>{{td}}</p>
         </td>
+        {% endfor %}
       </tr>
       {% endfor %}
     </table>
